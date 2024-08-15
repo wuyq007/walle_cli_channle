@@ -115,18 +115,6 @@ apksigner sign --ks signer/debug.keystore \
 apksigner verify --verbose --print-certs  app-release_signed.apk
 ```
 
-```
-apksigner sign --ks 【签名文件】 \
-   --ks-key-alias 【KEY_ALIAS】 \
-   --ks-pass pass:【STORE_PASSWORD】 \
-   --key-pass pass:【KEY_PASSWORD】  \
-   --v1-signing-enabled true \
-   --v2-signing-enabled true \
-   --v3-signing-enabled true \
-   --v4-signing-enabled true \
-   --out 【签名后的APK文件】 【签名前的APK文件】
-```
-
 ### 一键签名及渠道分发脚本如下，可以将下列代码直接保存成 .sh 文件，记得替换签名文件及秘钥密码
 
 ```
