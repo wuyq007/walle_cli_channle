@@ -92,14 +92,14 @@ mv hlyd-*-release_*.apk output_apks/
 
 
 ### apksigner 签名
-apksigner sign --ks 【签名文件】 \   
---ks-key-alias 【KEY_ALIAS】 \
---ks-pass pass:【STORE_PASSWORD】 \
---key-pass pass:【KEY_PASSWORD】  \
---v1-signing-enabled true \        # 支持V1签名（新版SDK不支持）
---v2-signing-enabled true \        # 支持V2签名
---v3-signing-enabled true \        # 支持V3签名
---v4-signing-enabled true \        # 支持V4签名（未生效）
+apksigner sign --ks 【签名文件】 \  <br>   
+--ks-key-alias 【KEY_ALIAS】 \  <br>   
+--ks-pass pass:【STORE_PASSWORD】 \  <br>   
+--key-pass pass:【KEY_PASSWORD】  \  <br>   
+--v1-signing-enabled true \        # 支持V1签名（新版SDK不支持）  <br>   
+--v2-signing-enabled true \        # 支持V2签名  <br>   
+--v3-signing-enabled true \        # 支持V3签名  <br>   
+--v4-signing-enabled true \        # 支持V4签名（未生效）  <br>   
 --out 【签名后的APK文件】 【签名前的APK文件】
 
 ```
@@ -185,6 +185,8 @@ chmod u+x 【.sh 文件路径】
 //获取 .sh 执行权限 （只需要执行一次）
 chmod u+x ./cli_channel_apk.sh 
 //运行 .sh 脚本
+./cli_channel_apk.sh app-release.apk
+//如果你的目录下有仅有一个APK，可以省略，sh 中会查找当前文件中第一个 apk 
 ./cli_channel_apk.sh
 ```
 
