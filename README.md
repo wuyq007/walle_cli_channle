@@ -1,10 +1,12 @@
 # walle_cli_channle
 ### 基于美团的 walle 对 APK 进行多渠道打包，并且签名。签名基于 android sdk apksigner
 
+
 ## Walle 分发
-> [walle-cli 文档](https://github.com/Meituan-Dianping/walle/blob/master/walle-cli/README.md)。
+> [walle-cli 文档。](https://github.com/Meituan-Dianping/walle/blob/master/walle-cli/README.md)
 > 
-> [walle_channle_cli.jar 下载地址](https://github.com/Meituan-Dianping/walle/releases)。
+> [walle_channle_cli.jar 下载地址。](https://github.com/Meituan-Dianping/walle/releases)
+
 
 ### walle 打包一个渠道
 java -jar 【walle-cli-all.jar 路径】 put -c 【渠道名称】 【需要打包的apk文件】
@@ -24,6 +26,7 @@ java -jar signer/walle-cli-all.jar put -c xiaomi app-release.apk app-release-xia
 java -jar signer/walle-cli-all.jar show app-release-xiaomi.apk
 ```
 
+
 ### walle 打包多个渠道
 java -jar 【walle-cli-all.jar 路径】 put -c 【渠道名称1,渠道名称2】 【需要打包的apk文件】
 
@@ -41,6 +44,7 @@ java -jar signer/walle-cli-all.jar show app-release_huawei.apk
 ...
 
 ```
+
 
 ### walle 指定渠道配置文件打包多个APK
 java -jar 【walle-cli-all.jar 路径】 batch -f 【渠道文件名称】 【需要打包的apk文件】
@@ -60,6 +64,7 @@ java -jar signer/walle-cli-all.jar show app-release_signed_huawei.apk
 
 ```
 
+
 ### walle 渠道文件多个APK，指定一个输出目录
 
 ```
@@ -70,9 +75,10 @@ mv hlyd-*-release_*.apk output_apks/
 //到这里，渠道分发就完成了
 ```
 
-## apksigner 签名：使用 androidStudio SDK apksigner 进行签名
 
-### 如果没有配置 apksigner 环境变量，需要先配置
+## apksigner 签名：
+
+### 使用 androidStudio SDK apksigner 进行签名，如果没有配置 apksigner 环境变量，需要先配置
 
 ```
 //这里提供MAC上配置环境变量的方法
@@ -83,6 +89,7 @@ mv hlyd-*-release_*.apk output_apks/
 5. 修改后保存文件，命令行执行 source ~/.bash_profile，或者重启终端
 6. 输入 apksigner --version 验证
 ```
+
 
 ### apksigner 签名
 apksigner sign --ks 【签名文件】 \   
@@ -115,10 +122,10 @@ apksigner sign --ks signer/debug.keystore \
 apksigner verify --verbose --print-certs  app-release_signed.apk
 ```
 
+
 ### 一键签名及渠道分发脚本如下，可以将下列代码直接保存成 .sh 文件，记得替换签名文件及秘钥密码
 
 ```
-
 # 密钥库信息
 KEYSTORE_PATH="signer/debug.keystore"     # 替换为你的 keystore 文件路径
 KEY_ALIAS="debug_key"                     # 替换为你的密钥别名
@@ -173,7 +180,6 @@ echo "All APK files have been signed and moved to $OUTPUT_DIR"
 
 ### mac电脑 中可能需要添加脚本执行权限 
 chmod u+x 【.sh 文件路径】
-
 ```
 //例如
 //获取 .sh 执行权限 （只需要执行一次）
@@ -193,6 +199,7 @@ buildscript {
     }
 }
 ```
+
 并在当前App的 build.gradle 文件中apply这个插件，并添加上用于读取渠道号的AAR
 ```
 //支持 gradle 7.0
@@ -200,6 +207,7 @@ dependencies {
     implementation 'com.github.Petterpx.walle:library:1.0.5'
 }
 ```
+
 代码中获取渠道名称
 ```
 String channel = WalleChannelReader.getChannel(this.getApplicationContext());
